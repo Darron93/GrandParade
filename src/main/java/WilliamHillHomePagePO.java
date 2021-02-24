@@ -1,6 +1,4 @@
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -50,7 +48,11 @@ public class WilliamHillHomePagePO {
 
     public void waitForPageToLoad() {
         System.out.println("Wait for the page to load");
-        waitForVisible(driver, williamHillLogo, 30);
+        try {
+            waitForVisible(driver, driver.findElement(By.xpath("//span[@class='sb-header-logo__image']")), 30);
+        }catch(StaleElementReferenceException se) {
+            waitForVisible(driver, driver.findElement(By.xpath("//span[@class='sb-header-logo__image']")), 30);
+        }
     }
 
     public void checkIfJoinButtonIsDisplayed() {

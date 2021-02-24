@@ -9,7 +9,7 @@ public class WebAutomationTest extends BaseClass {
 
         WilliamHillHomePagePO homePage = new WilliamHillHomePagePO(driver);
 
-        goToUrl("日本語");
+        goToUrl("https://sports.williamhill.com/betting/en-gb");
         homePage.waitForPageToLoad();
         homePage.checkIfJoinButtonIsDisplayed();
         homePage.changeLanguage("日本語");

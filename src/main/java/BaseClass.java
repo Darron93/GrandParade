@@ -3,6 +3,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Map;
 public class BaseClass {
 
     WebDriver driver;
+    String URL = "https://sports.williamhill.com/betting/en-gb";
 
     protected WebDriver goToUrl(String url) {
 
@@ -30,9 +32,8 @@ public class BaseClass {
         else {
             System.setProperty("webdriver.chrome.driver", chromeDriverPath + "\\chromedriver.exe");
         }
-        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("intl.accept_languages", "ja-jp,ja");
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
+        goToUrl(URL);
         System.out.println("------------------------------");
         System.out.println("THE AUTOMATIC TEST HAS STARTED");
         System.out.println("------------------------------");

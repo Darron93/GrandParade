@@ -18,7 +18,7 @@ import static org.testng.Assert.assertTrue;
 
 public class WilliamHillHomePagePO {
 
-    @FindBy(xpath = "//span[contains(text(),'Join')]")
+    @FindBy(xpath = "//button[@data-test-id='@sitebase/registration-button_pi-header__registration-button']/span")
     WebElement joinButton;
 
     @FindBy(xpath = "//span[@class='sb-header-logo__image']")
@@ -33,6 +33,12 @@ public class WilliamHillHomePagePO {
     @FindBy(xpath = "//*[@id='@sportsbook/sub-nav-end-language-menu-ja-jp']")
     WebElement japaneseLanguage;
 
+    @FindBy(xpath = "//*[@id='@sportsbook/sub-nav-end-language-menu-el-gr']")
+    WebElement greekLanguage;
+
+    @FindBy(xpath = "//*[@id='@sportsbook/sub-nav-end-language-menu-de-de']")
+    WebElement deutschLanguage;
+
 
     WebDriver driver;
 
@@ -44,7 +50,7 @@ public class WilliamHillHomePagePO {
 
     public void waitForPageToLoad() {
         System.out.println("Wait for the page to load");
-        waitForVisible(driver, williamHillLogo, 20);
+        waitForVisible(driver, williamHillLogo, 30);
     }
 
     public void checkIfJoinButtonIsDisplayed() {
@@ -58,32 +64,68 @@ public class WilliamHillHomePagePO {
         }
     }
 
-    public void changeLanguage(String language) {
+    public void checkLanguageAndChoose(WebElement languageElement, String languageLabel) {
 
+        waitForVisible(driver, languageElement);
+        try {
+            assertEquals(languageElement.getText(), languageLabel);
+            System.out.println("Properly language: " + languageLabel + ", Language on list: " + languageElement.getText());
+            System.out.println("PASSED");
+        }catch(AssertionError ar) {
+            System.out.println("Properly language: " + languageLabel + ", Language on list: " + languageElement.getText());
+            System.out.println("FAILED");
+            assertTrue(2<1);
+        }
+        System.out.println("Click on language");
+        languageElement.click();
+        waitForPageToLoad();
+    }
+
+    public void verifyButtonLanguage(WebElement buttonElement, String languageButton) {
+
+        waitForVisible(driver, buttonElement);
+        try {
+            assertEquals(buttonElement.getText(), languageButton);
+            System.out.println("Properly language: " + languageButton + ", Language on button: " + buttonElement.getText());
+            System.out.println("PASSED");
+        }catch(AssertionError ar) {
+            System.out.println("Properly language: " + languageButton + ", Language on button: " + buttonElement.getText());
+            System.out.println("FAILED");
+            assertTrue(2<1);
+        }
+        System.out.println("-----------------------");
+    }
+
+    public void clickOnTheLanguageList() {
         System.out.println("Click on the language list");
         languageButton.click();
+    }
 
-        waitForVisible(driver,japaneseLanguage,10);
-        System.out.println("Choosen language: " + japaneseLanguage.getText());
-        assertEquals(japaneseLanguage.getText(), "日本語");
-        japaneseLanguage.click();
+    public void changeLanguageAndVerify(String language) {
 
-//        for(WebElement e : languageList) {
-//            if(e.getText().contains(language)) {
-//                System.out.println("Choose language to: " + language);
-//                waitForVisible(driver, e, 5);
-//                e.click();
-//                break;
-//            }
-//            else {
-//                System.out.println("Not Recognize the language: " + language);
-//                assertTrue(2<1);
-//            }
-//        }
+        switch (language){
+            case"Japanese":
+                checkLanguageAndChoose(japaneseLanguage, "日本語");
+                verifyButtonLanguage(joinButton, "登録");
+                break;
+            case"German":
+                checkLanguageAndChoose(deutschLanguage, "Deutsch");
+                verifyButtonLanguage(joinButton, "Anmelden");
+                break;
+            case"Greek":
+                checkLanguageAndChoose(greekLanguage, "Ελληνική");
+                verifyButtonLanguage(joinButton, "Εγγραφή");
+                break;
+        }
     }
 
     public void waitForVisible(WebDriver driver, WebElement element, int timeInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeInSeconds);
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void waitForVisible(WebDriver driver, WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 

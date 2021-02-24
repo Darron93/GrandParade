@@ -65,7 +65,7 @@ public class WilliamHillHomePagePO {
     }
 
     public void checkLanguageAndChoose(WebElement languageElement, String languageLabel) {
-
+        System.out.println("Wait for language");
         waitForVisible(driver, languageElement);
         try {
             assertEquals(languageElement.getText(), languageLabel);
@@ -82,7 +82,7 @@ public class WilliamHillHomePagePO {
     }
 
     public void verifyButtonLanguage(WebElement buttonElement, String languageButton) {
-
+        System.out.println("Wait for button");
         waitForVisible(driver, buttonElement);
         try {
             assertEquals(buttonElement.getText(), languageButton);

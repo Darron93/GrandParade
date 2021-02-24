@@ -32,7 +32,9 @@ public class BaseClass {
         else {
             System.setProperty("webdriver.chrome.driver", chromeDriverPath + "\\chromedriver.exe");
         }
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        driver = new ChromeDriver(options);
         goToUrl(URL);
         System.out.println("------------------------------");
         System.out.println("THE AUTOMATIC TEST HAS STARTED");

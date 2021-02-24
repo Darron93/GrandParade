@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class WilliamHillHomePagePO {
@@ -29,6 +30,8 @@ public class WilliamHillHomePagePO {
     @FindAll({@FindBy(xpath = "//span[@class='sb-header-drawer-item__name']")})
     List<WebElement> languageList;
 
+    @FindBy(xpath = "//*[@id='@sportsbook/sub-nav-end-language-menu-ja-jp']")
+    WebElement japaneseLanguage;
 
 
     WebDriver driver;
@@ -59,18 +62,24 @@ public class WilliamHillHomePagePO {
 
         System.out.println("Click on the language list");
         languageButton.click();
-        for(WebElement e : languageList) {
-            if(e.getText().contains(language)) {
-                System.out.println("Choose language to: " + language);
-                waitForVisible(driver, e, 5);
-                e.click();
-                break;
-            }
-            else {
-                System.out.println("Not Recognize the language: " + language);
-                assertTrue(2<1);
-            }
-        }
+
+        waitForVisible(driver,japaneseLanguage,10);
+        System.out.println("Choosen language: " + japaneseLanguage.getText());
+        assertEquals(japaneseLanguage.getText(), "日本語");
+        japaneseLanguage.click();
+
+//        for(WebElement e : languageList) {
+//            if(e.getText().contains(language)) {
+//                System.out.println("Choose language to: " + language);
+//                waitForVisible(driver, e, 5);
+//                e.click();
+//                break;
+//            }
+//            else {
+//                System.out.println("Not Recognize the language: " + language);
+//                assertTrue(2<1);
+//            }
+//        }
     }
 
     public void waitForVisible(WebDriver driver, WebElement element, int timeInSeconds) {

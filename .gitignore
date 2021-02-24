@@ -1,0 +1,10 @@
+.idea/
+results/
+target/
+*iml
+
+# Compiled class file
+*.class
+
+# Log file
+*.log

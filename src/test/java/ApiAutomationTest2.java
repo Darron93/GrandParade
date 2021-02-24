@@ -1,0 +1,2 @@
+public class ApiAutomationTest2 {
+}

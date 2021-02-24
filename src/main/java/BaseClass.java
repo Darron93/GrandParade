@@ -24,7 +24,7 @@ public class BaseClass {
         String chromeDriverPath = System.getProperty("user.dir");
         System.out.println(chromeDriverPath);
         if(System.getProperty("os.name").contains("linux")) {
-            System.setProperty("webdriver.chrome.driver", chromeDriverPath + "/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", chromeDriverPath + "/chromedriver");
         }
         else {
             System.setProperty("webdriver.chrome.driver", chromeDriverPath + "\\chromedriver.exe");

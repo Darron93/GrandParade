@@ -52,8 +52,8 @@ public class BaseClass {
         System.out.println("------------------------------");
         System.out.println("THE AUTOMATIC TEST IS COMPLETE");
         System.out.println("------------------------------");
-//        driver.manage().deleteAllCookies();
-//        driver.close();
-//        driver.quit();
+        driver.manage().deleteAllCookies();
+        driver.close();
+        driver.quit();
     }
 }

@@ -40,21 +40,24 @@ public class WilliamHillHomePagePO {
 
     WebDriver driver;
 
+    //konstruktor inicjujacy driver
     public WilliamHillHomePagePO(WebDriver driver) {
 
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
+    //oczekiwanie na zaladowanie strony
     public void waitForPageToLoad() {
         System.out.println("Wait for the page to load");
         try {
-            waitForVisible(driver, driver.findElement(By.xpath("//span[@class='sb-header-logo__image']")), 30);
+            waitForVisible(driver.findElement(By.xpath("//span[@class='sb-header-logo__image']")), 30);
         }catch(StaleElementReferenceException se) {
-            waitForVisible(driver, driver.findElement(By.xpath("//span[@class='sb-header-logo__image']")), 30);
+            waitForVisible(driver.findElement(By.xpath("//span[@class='sb-header-logo__image']")), 30);
         }
     }
 
+    //sprawdzenie czy przycisk "Join" wyswietla sie
     public void checkIfJoinButtonIsDisplayed() {
 
         if(elementIsDisplayed(joinButton)) {
@@ -66,9 +69,11 @@ public class WilliamHillHomePagePO {
         }
     }
 
+    //sprawdzenie oraz wybranie jezyka, oczekiwaniena zaladowanie strony
+    //parametry: webelement do weryfikacji, oczekiwany tekst
     public void checkLanguageAndChoose(WebElement languageElement, String languageLabel) {
         System.out.println("Wait for language");
-        waitForVisible(driver, languageElement);
+        waitForVisible(languageElement);
         try {
             assertEquals(languageElement.getText(), languageLabel);
             System.out.println("Properly language: " + languageLabel + ", Language on list: " + languageElement.getText());
@@ -83,9 +88,11 @@ public class WilliamHillHomePagePO {
         waitForPageToLoad();
     }
 
+    //sprawdzenie czy przycisk "Join" zawiera poprawny jezyk
+    //webelement do weryfikacji, oczekiwany tekst
     public void verifyButtonLanguage(WebElement buttonElement, String languageButton) {
         System.out.println("Wait for button");
-        waitForVisible(driver, buttonElement);
+        waitForVisible(buttonElement);
         try {
             assertEquals(buttonElement.getText(), languageButton);
             System.out.println("Properly language: " + languageButton + ", Language on button: " + buttonElement.getText());
@@ -98,11 +105,14 @@ public class WilliamHillHomePagePO {
         System.out.println("-----------------------");
     }
 
+    //kliknij w liste z jezykami
     public void clickOnTheLanguageList() {
         System.out.println("Click on the language list");
         languageButton.click();
     }
 
+    //wybor jezyka
+    //parametry: jezyk do wyboru
     public void changeLanguageAndVerify(String language) {
 
         switch (language){
@@ -121,16 +131,22 @@ public class WilliamHillHomePagePO {
         }
     }
 
-    public void waitForVisible(WebDriver driver, WebElement element, int timeInSeconds) {
+    //metoda pomocnicza - oczekiwanie na widocznosc elemenetu
+    //parametry: webelement, czas oczekiwania w sekundach
+    public void waitForVisible(WebElement element, int timeInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeInSeconds);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public void waitForVisible(WebDriver driver, WebElement element) {
+    //metoda pomocnicza - oczekiwanie na widocznosc elemenetu
+    //parametry: webelement
+    public void waitForVisible(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    //metoda pomocnicza - sprawdz czy element jest widoczny z obsluga wyjatow
+    //parametry: webelement
     public boolean elementIsDisplayed(WebElement element) {
         try {
            element.isDisplayed();

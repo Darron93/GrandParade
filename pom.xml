@@ -34,7 +34,8 @@
                     <argLine>-Dfile.encoding=UTF-8</argLine>
                     <argLine>-Dtestng.dtd.http=true</argLine>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>testngAPI.xml</suiteXmlFile>
+                        <suiteXmlFile>testngUI.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

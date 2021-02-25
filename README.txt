@@ -11,3 +11,7 @@ Linux:
 2. instalacja jdk
 3. instalacja maven
 
+Uruchamianie testów komendy:
+mvn clean install -Dsurefire.suiteXmlFiles=testngAPI.xml - testy API
+mvn clean install -Dsurefire.suiteXmlFiles=testngUI.xml - testy UI
+

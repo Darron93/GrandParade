@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class BaseClass {
@@ -24,10 +25,14 @@ public class BaseClass {
     protected void beforeMethod() {
 
         String chromeDriverPath = System.getProperty("user.dir");
+        String os = System.getProperty("os.name").toLowerCase();
         System.out.println(chromeDriverPath);
-        System.out.println(System.getProperty("os.name"));
-        if(System.getProperty("os.name").contains("Linux")) {
+        System.out.println(os);
+        if(os.contains("linux")) {
             System.setProperty("webdriver.chrome.driver", chromeDriverPath + "/chromedriverlinux");
+        }
+        else if(os.contains("mac")) {
+            System.setProperty("webdriver.chrome.driver", chromeDriverPath + "/chromedrivermac");
         }
         else {
             System.setProperty("webdriver.chrome.driver", chromeDriverPath + "\\chromedriver.exe");
@@ -35,11 +40,10 @@ public class BaseClass {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
-        goToUrl(URL);
         System.out.println("------------------------------");
         System.out.println("THE AUTOMATIC TEST HAS STARTED");
         System.out.println("------------------------------");
-
+        goToUrl(URL);
     }
 
     @AfterMethod

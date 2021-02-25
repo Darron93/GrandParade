@@ -10,4 +10,4 @@ Linux:
 1. instalacja git
 2. instalacja jdk
 3. instalacja maven
- 
+

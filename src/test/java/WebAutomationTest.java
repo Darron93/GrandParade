@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 public class WebAutomationTest extends BaseClass {
 
     @Test
-    public void changeLanguageToGermany() {
+    public void changeLanguageToAnother() {
 
         WilliamHillHomePagePO homePage = new WilliamHillHomePagePO(driver);
 

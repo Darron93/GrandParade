@@ -6,17 +6,17 @@ public class WebAutomationTest extends BaseClass {
     public void changeLanguageToAnother() {
 
         /*
-        Test zmiany jezyka strony wraz z weryfikacja przycisku JOIN
-        1. Przejscie na strone glowna William Hill
-        2. Oczekiwanie na zaladowanie strony
-        3. Sprawdzenie czy przycisk JOIN jest widoczny
-        4. Klikniecie w liste zawierajaca jezyki
-        5. Zmiana jezyka na niemiecki
-        6. Weryfikacja czy przycisk JOIN jest w jezyku niemieckim
-        7. Zmiana jezyka na japonski
-        8. Weryfikacja czy przycisk JOIN jest w jezyku japonskim
-        9. Zmiana na jezyk grecki
-        10. Weryfikacja czy przycisk JOIN jest w jezyku greckim
+        Page language change test with JOIN button verification
+        1. Go to William Hill home page
+        2. Waiting for the page to load
+        3. Check if the JOIN button is visible
+        4. Click on the list of languages
+        5. Change of language to German
+        6. Verification if the JOIN button is in the German language
+        7. Changing the language to Japanese
+        8. Verification if the JOIN button is in Japanese
+        9. Change to Greek
+        10. Verification if the JOIN button is in Greek
          */
 
         WilliamHillHomePagePO homePage = new WilliamHillHomePagePO(driver);

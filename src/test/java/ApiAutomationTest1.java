@@ -2,7 +2,6 @@ import apiObjects.DataList;
 import apiObjects.GenerationMix;
 import apiObjects.Intensity;
 import apiObjects.Regions;
-import lombok.SneakyThrows;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,7 +9,6 @@ import org.testng.annotations.Test;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 
 public class ApiAutomationTest1 {
@@ -87,17 +85,4 @@ public class ApiAutomationTest1 {
 
         System.out.println("------------------------------");
     }
-
-
-    //Scenario 3:
-//
-//        List<Double> fuelBiomass = fuelList.stream().flatMap(Collection::stream).filter(a -> Objects.equals(a.getFuel(), "biomass"))
-//                .map(a -> a.getPerc())
-//                .collect(Collectors.toList());
-//
-//        System.out.println(fuelBiomass);
-//
-
-//
-// -----------------------------------------------------
 }

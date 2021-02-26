@@ -27,7 +27,7 @@ public class ApiAutomationTest1 {
                     then().
 //                  log().all().    //uncomment if you want to see all logs
                     statusCode(200)
-                    .extract().as(DataList.class) //DataList wiaze sie z klasami pomocniczymi z paczki: apiObjects
+                    .extract().as(DataList.class) //DataList connects to the helper classes from the package: apiObjects
                     .getData().get(0).getRegions();
     }
 
